@@ -1,7 +1,9 @@
 package com.ead.notification.models
 
 import com.ead.notification.enums.NotificationStatus
+import java.io.Serializable
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.UUID
 import javax.persistence.*
 
@@ -22,10 +24,10 @@ data class NotificationModel(
     val message: String = "",
 
     @Column(nullable = false)
-    val creationDate: LocalDateTime = LocalDateTime.now(),
+    val creationDate: LocalDateTime = LocalDateTime.now(ZoneId.of("UTC")),
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     val status: NotificationStatus = NotificationStatus.CREATED
 
-)
+): Serializable
