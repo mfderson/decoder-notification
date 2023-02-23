@@ -1,6 +1,7 @@
 package com.ead.notification.models
 
 import com.ead.notification.enums.NotificationStatus
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.io.Serializable
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -9,6 +10,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "NOTIFICATIONS")
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class NotificationModel(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

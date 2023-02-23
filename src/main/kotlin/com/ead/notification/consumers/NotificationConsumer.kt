@@ -1,9 +1,11 @@
 package com.ead.notification.consumers
 
-import com.ead.notification.configs.modelMapper
+
 import com.ead.notification.dtos.NotificationCommandDto
+import com.ead.notification.dtos.toNotificationModel
 import com.ead.notification.models.NotificationModel
 import com.ead.notification.services.NotificationService
+import org.modelmapper.ModelMapper
 import org.springframework.amqp.core.ExchangeTypes
 import org.springframework.amqp.rabbit.annotation.Exchange
 import org.springframework.amqp.rabbit.annotation.Queue
@@ -30,7 +32,7 @@ class NotificationConsumer(
         )]
     )
     fun listen(@Payload notificationDto: NotificationCommandDto) {
-        val notification = modelMapper().map(notificationDto, NotificationModel::class.java)
+        val notification = notificationDto.toNotificationModel()
         notificationService.save(notification)
     }
 }
