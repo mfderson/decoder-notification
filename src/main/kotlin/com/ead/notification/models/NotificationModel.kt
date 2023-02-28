@@ -30,6 +30,6 @@ data class NotificationModel(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val status: NotificationStatus = NotificationStatus.CREATED
+    var status: NotificationStatus = NotificationStatus.CREATED
 
 ): Serializable
